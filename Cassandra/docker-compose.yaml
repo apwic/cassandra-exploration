@@ -11,12 +11,12 @@ services:
           - cassandra-1
     volumes:
       - cassandra-data1:/var/lib/cassandra
-      - ./Data:/Data
+      - ./Data:/csv
 
   cassandra-2:
     image: cassandra:4.1
     environment:
-      - CASSANDRA_SEEDS=cassandra-1
+      - CASSANDRA_SEEDS=cassandra-1,cassandra-2
     ports:
       - "9043:9042"
     depends_on:
@@ -31,7 +31,7 @@ services:
   cassandra-3:
     image: cassandra:4.1
     environment:
-      - CASSANDRA_SEEDS=cassandra-1
+      - CASSANDRA_SEEDS=cassandra-1,cassandra-2
     ports:
       - "9044:9042"
     depends_on:
